@@ -1,165 +1,229 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
-import { MapPin, ShieldCheck, Package, FlaskConical } from "lucide-react"
+import { ShieldCheck, Award, Stethoscope, Phone, ArrowRight } from "lucide-react"
+import Reveal from "@/components/animations/reveal"
+import StaggerContainer, { StaggerItem } from "@/components/animations/stagger"
+import Counter from "@/components/animations/counter"
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us | Balaji Health Care",
+  description:
+    "Learn about Balaji Health Care — wholesale dialysis equipment supplier based in Indore, India, serving hospitals and clinics since 2008.",
 }
+
+const pillars = [
+  {
+    icon: ShieldCheck,
+    title: "Reliability",
+    description:
+      "Every machine we deliver is tested, warrantied, and backed by responsive after-sales support. We stand behind what we sell.",
+  },
+  {
+    icon: Award,
+    title: "Genuine Supply",
+    description:
+      "We source only from OEM-certified channels — no grey-market parts, no shortcuts. Your patients' safety is our priority.",
+  },
+  {
+    icon: Stethoscope,
+    title: "Medical Expertise",
+    description:
+      "Our team of dialysis technicians and biomedical engineers brings hands-on clinical experience to every interaction.",
+  },
+]
 
 export default function AboutPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="py-20 lg:py-32 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="text-[#0284C7] font-semibold tracking-wider uppercase text-sm mb-4 block">
+    <div>
+      {/* Header */}
+      <section className="bg-gradient-to-b from-slate-50 to-white pt-12 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Reveal direction="up">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#0284C7] font-medium mb-3">
               About Us
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Dedicated to advancing <br className="hidden md:block" />
-              renal care excellence.
-            </h1>
-            <p className="text-xl text-slate-600 leading-relaxed">
-              As a premier wholesale supplier and maintenance partner, we empower
-              healthcare facilities with top-tier dialysis equipment and
-              unwavering support.
             </p>
-          </div>
+          </Reveal>
+          <Reveal direction="up" delay={0.1}>
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              Your Trusted Dialysis Equipment Partner
+            </h1>
+          </Reveal>
+          <Reveal direction="up" delay={0.15}>
+            <p className="text-slate-500 max-w-xl mx-auto">
+              Based in Indore, India — supplying hospitals and dialysis centers
+              with reliable equipment, parts, and service since 2008.
+            </p>
+          </Reveal>
         </div>
       </section>
 
       {/* Company Story */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Image side */}
+            <Reveal direction="left" delay={0.1}>
+              <div className="relative">
+                <div className="rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSaIwNP3L-zv559t0Jk0vu8Z_5HE4suH_fjHF-3-HHcsMqE-zCuLZQygUBU5oNJl6LTooGuSoKvxW72BZN04rQBvjdzCY9X5TeNU9UandmzhLy5kQ_37DB3pgZpA9yT0BPzigE-Xk5oHEfJofP4IhUbDYp36SnUD-EV_QuoRYBmBTPOTAJvVS_uBGzKh_iEKtH69r32DK23QVlQNG7XOYAkjxhh3aTcA0QAbEWZjfN0aK7qnq-RyX37jDcdAPVEREKGeRgBCivwU0"
+                    alt="Balaji Health Care Team"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+
+                {/* Floating Stats */}
+                <div className="absolute -bottom-6 -right-4 md:right-6 bg-white px-5 py-4 rounded-xl shadow-lg border border-slate-100">
+                  <div className="grid grid-cols-3 gap-6 text-center">
+                    <div>
+                      <div className="text-xl font-bold text-[#0B2B5E]">
+                        <Counter target={2008} suffix="" duration={2} />
+                      </div>
+                      <div className="text-[10px] text-slate-500 mt-0.5">
+                        Founded
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xl font-bold text-[#0B2B5E]">
+                        <Counter target={15} suffix="+" duration={2} />
+                      </div>
+                      <div className="text-[10px] text-slate-500 mt-0.5">
+                        Years
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xl font-bold text-[#0B2B5E]">
+                        <Counter target={500} suffix="+" duration={2.5} />
+                      </div>
+                      <div className="text-[10px] text-slate-500 mt-0.5">
+                        Machines
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Text side */}
+            <div className="space-y-6">
+              <Reveal direction="right" delay={0.1}>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+                  Our Story
+                </h2>
+              </Reveal>
+              <Reveal direction="right" delay={0.15}>
+                <p className="text-slate-500 leading-relaxed">
+                  Balaji Health Care was founded in Indore, Madhya Pradesh, with
+                  a clear mission: to make high-quality dialysis equipment
+                  accessible and affordable for healthcare centers across India.
+                </p>
+              </Reveal>
+              <Reveal direction="right" delay={0.2}>
+                <p className="text-slate-500 leading-relaxed">
+                  Starting with a small operation supplying refurbished
+                  hemodialysis machines, we have since grown into a wholesale
+                  partner serving hospitals, clinics, and dialysis centers with a
+                  complete range of equipment, consumables, and after-sales
+                  support.
+                </p>
+              </Reveal>
+              <Reveal direction="right" delay={0.25}>
+                <p className="text-slate-500 leading-relaxed">
+                  Led by experienced professionals with backgrounds in biomedical
+                  engineering and healthcare logistics, our team understands the
+                  criticality of reliable dialysis equipment. Every product we
+                  deliver is tested, warrantied, and supported.
+                </p>
+              </Reveal>
+              <Reveal direction="right" delay={0.3}>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center text-sm font-medium text-[#0284C7] group"
+                >
+                  Get in touch
+                  <ArrowRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pillars */}
       <section className="py-16 lg:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            {/* Left — Image */}
-            <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-slate-200 relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt="Portrait of Founder"
-                  className="object-cover w-full h-full"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSaIwNP3L-zv559t0Jk0vu8Z_5HE4suH_fjHF-3-HHcsMqE-zCuLZQygUBU5oNJl6LTooGuSoKvxW72BZN04rQBvjdzCY9X5TeNU9UandmzhLy5kQ_37DB3pgZpA9yT0BPzigE-Xk5oHEfJofP4IhUbDYp36SnUD-EV_QuoRYBmBTPOTAJvVS_uBGzKh_iEKtH69r32DK23QVlQNG7XOYAkjxhh3aTcA0QAbEWZjfN0aK7qnq-RyX37jDcdAPVEREKGeRgBCivwU0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-6 left-6 text-white">
-                  <p className="font-bold text-xl">Vinod Tripathi</p>
-                  <p className="text-white/80 text-sm">
-                    Founder &amp; Managing Director
+          <div className="text-center mb-14">
+            <Reveal direction="up">
+              <h2 className="text-3xl font-bold text-slate-900">
+                What We Stand For
+              </h2>
+            </Reveal>
+            <Reveal direction="up" delay={0.1}>
+              <p className="text-slate-500 mt-3 max-w-md mx-auto">
+                The principles that guide how we work with every customer.
+              </p>
+            </Reveal>
+          </div>
+
+          <StaggerContainer className="grid md:grid-cols-3 gap-8" stagger={0.12}>
+            {pillars.map((pillar) => (
+              <StaggerItem key={pillar.title}>
+                <div className="bg-white rounded-xl border border-slate-100 p-8 h-full text-center transition-all duration-300 hover:shadow-md hover:border-slate-200 hover:-translate-y-1">
+                  <div className="w-14 h-14 bg-[#0B2B5E]/5 rounded-xl flex items-center justify-center mx-auto mb-5">
+                    <pillar.icon className="w-7 h-7 text-[#0B2B5E]" />
+                  </div>
+                  <h3 className="font-bold text-lg text-slate-900 mb-3">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    {pillar.description}
                   </p>
                 </div>
-              </div>
-
-              {/* Stats floating card */}
-              <div className="absolute -right-6 md:-right-12 -bottom-8 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 max-w-xs">
-                <div className="grid grid-cols-2 gap-4 divide-x divide-slate-200">
-                  <div>
-                    <p className="text-3xl font-bold text-[#0284C7] mb-1">
-                      2008
-                    </p>
-                    <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">
-                      Established
-                    </p>
-                  </div>
-                  <div className="pl-4">
-                    <p className="text-3xl font-bold text-[#0284C7] mb-1">
-                      15+
-                    </p>
-                    <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">
-                      Years Exp.
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-4 pt-4 border-t border-slate-200 flex items-center gap-2 text-slate-600 text-sm font-medium">
-                  <MapPin className="w-4 h-4" /> Based in Indore, MP
-                </div>
-              </div>
-            </div>
-
-            {/* Right — Story */}
-            <div className="mt-12 lg:mt-0">
-              <span className="text-[#0284C7] font-semibold tracking-wider uppercase text-sm mb-4 block">
-                Our Story
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-                Serving Healthcare Since 2008
-              </h2>
-              <div className="space-y-6 text-lg text-slate-600">
-                <p>
-                  Balaji Health Care is a wholesale supplier of dialysis machines,
-                  dialysis equipment, and related medical consumables. The business
-                  provides hospitals, dialysis centers, and medical institutions
-                  with high-quality dialysis machines and essential accessories
-                  required for dialysis treatment.
-                </p>
-                <p>
-                  In addition to supplying equipment, the company also offers
-                  maintenance and service support for dialysis machines to ensure
-                  reliable and uninterrupted operation in healthcare facilities.
-                  Balaji Health Care focuses on delivering dependable products,
-                  timely supply, and professional service to support medical
-                  providers in delivering effective patient care.
-                </p>
-              </div>
-              <Link
-                href="/contact"
-                className="inline-flex items-center mt-8 text-[#0284C7] font-medium hover:underline"
-              >
-                Contact Vinod Tripathi &rarr;
-              </Link>
-            </div>
-          </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
-      {/* Values / Pillars */}
-      <section className="py-20 lg:py-32 bg-[#E8F2FB] border-y border-sky-100">
+      {/* CTA */}
+      <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-4">Our Core Pillars</h2>
-            <p className="text-lg text-slate-600">
-              The principles that guide our operations and ensure unparalleled
-              service delivery.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#0284C7]/10 rounded-xl flex items-center justify-center mb-6">
-                <ShieldCheck className="w-8 h-8 text-[#0284C7]" />
+          <Reveal direction="up">
+            <div className="bg-gradient-to-br from-[#0B2B5E] to-[#0B2B5E]/90 rounded-2xl px-8 py-14 md:px-16 text-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[size:24px_24px]" />
+              <div className="relative">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                  Want to Partner With Us?
+                </h2>
+                <p className="text-blue-100/70 max-w-md mx-auto mb-8">
+                  Whether you&apos;re setting up a new dialysis center or need a
+                  reliable equipment supplier — we&apos;re here to help.
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center gap-3">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center px-6 py-3 text-sm font-medium text-[#0B2B5E] bg-white rounded hover:bg-slate-100 transition-all shadow-sm"
+                  >
+                    Contact Us
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                  <a
+                    href="https://wa.me/919826593932"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-[#25D366] rounded hover:bg-[#25D366]/90 transition-all shadow-sm"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-3">Reliability</h3>
-              <p className="text-slate-600">
-                Consistent, on-time delivery and rapid-response maintenance to
-                ensure zero disruption in patient care.
-              </p>
             </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#0284C7]/10 rounded-xl flex items-center justify-center mb-6">
-                <Package className="w-8 h-8 text-[#0284C7]" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Genuine Supply</h3>
-              <p className="text-slate-600">
-                Authorized sourcing of high-grade equipment and original spare
-                parts direct from trusted manufacturers.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#0284C7]/10 rounded-xl flex items-center justify-center mb-6">
-                <FlaskConical className="w-8 h-8 text-[#0284C7]" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Medical Expertise</h3>
-              <p className="text-slate-600">
-                A team of highly trained technicians specializing strictly in the
-                nuances of dialysis and renal care technology.
-              </p>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
-    </>
+    </div>
   )
 }

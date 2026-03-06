@@ -94,7 +94,7 @@ export default function ProductsPage() {
       <section className="bg-gradient-to-b from-slate-50 to-white pt-12 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Reveal direction="up">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#0284C7] font-medium mb-3">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#0369A1] font-medium mb-3">
               Our Products
             </p>
           </Reveal>
@@ -198,7 +198,7 @@ export default function ProductsPage() {
 
                       <Link
                         href="/contact"
-                        className="inline-flex items-center text-sm font-medium text-[#0284C7] group-hover:gap-2 transition-all"
+                        className="inline-flex items-center text-sm font-bold text-[#0369A1] group-hover:gap-2 transition-all"
                       >
                         Request Quote
                         <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -229,7 +229,7 @@ export default function ProductsPage() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
                     href="tel:+919826593932"
-                    className="inline-flex items-center px-6 py-3 text-sm font-medium text-[#0B2B5E] bg-white rounded hover:bg-slate-100 transition-all"
+                    className="inline-flex items-center px-6 py-3 text-sm font-bold text-[#0B2B5E] bg-white rounded hover:bg-slate-100 transition-all"
                   >
                     <Phone className="w-4 h-4 mr-2" />
                     Call: +91 98265 93932
@@ -238,7 +238,7 @@ export default function ProductsPage() {
                     href="https://wa.me/919826593932"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-[#25D366] rounded hover:bg-[#25D366]/90 transition-all"
+                    className="inline-flex items-center px-6 py-3 text-sm font-bold text-white bg-[#20B054] rounded hover:bg-[#20B054]/90 transition-all shadow-sm"
                   >
                     WhatsApp Us
                   </a>

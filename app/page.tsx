@@ -129,7 +129,7 @@ export default function HomePage() {
                 <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-slate-900 leading-[1.1] tracking-tight">
                   Dialysis Equipment
                   <br />
-                  <span className="text-[#0284C7]">Delivered With Precision.</span>
+                  <span className="text-[#0369A1]">Delivered With Precision.</span>
                 </h1>
               </Reveal>
 
@@ -145,7 +145,7 @@ export default function HomePage() {
                   <Magnetic strength={0.15}>
                     <Link
                       href="/products"
-                      className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-[#0B2B5E] rounded hover:bg-[#0B2B5E]/90 transition-all shadow-sm group"
+                      className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white bg-[#0B2B5E] rounded hover:bg-[#0B2B5E]/90 transition-all shadow-sm group"
                     >
                       Browse Products
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -153,7 +153,7 @@ export default function HomePage() {
                   </Magnetic>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-[#0B2B5E] bg-white border border-slate-200 rounded hover:bg-slate-50 transition-all"
+                    className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-[#0B2B5E] bg-white border border-slate-200 rounded hover:bg-slate-50 transition-all"
                   >
                     <Phone className="w-4 h-4 mr-2" />
                     Request a Quote
@@ -197,6 +197,11 @@ export default function HomePage() {
                   <div className="text-sm font-bold">Fresenius 5008S</div>
                 </motion.div>
 
+                {/* Subtle text above machine */}
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 -rotate-90 origin-left hidden lg:block">
+                  <span className="text-4xl font-black text-slate-100 select-none">FRESENIUS</span>
+                </div>
+
                 {/* Machine photo - using local high-res image */}
                 <motion.div
                   initial={{ opacity: 0, y: 20, scale: 0.96 }}
@@ -222,7 +227,7 @@ export default function HomePage() {
                   className="absolute bottom-4 left-0 bg-white px-4 py-3 rounded-xl shadow-lg border border-slate-100 z-10"
                 >
                   <div className="flex items-center space-x-2">
-                    <Clock className="w-5 h-5 text-[#0284C7]" />
+                    <Clock className="w-5 h-5 text-[#0369A1]" />
                     <div>
                       <div className="text-sm font-bold text-slate-900">24/7</div>
                       <div className="text-[10px] text-slate-500">Service Support</div>
@@ -268,7 +273,7 @@ export default function HomePage() {
             <Reveal direction="up" delay={0.1}>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
                 Trusted Equipment for
-                <span className="text-[#0284C7]"> Every Clinic</span>
+                <span className="text-[#0369A1]"> Every Clinic</span>
               </h2>
             </Reveal>
             <Reveal direction="up" delay={0.15}>
@@ -299,7 +304,7 @@ export default function HomePage() {
                       <p className="text-sm text-slate-500 leading-relaxed mb-4">
                         {product.description}
                       </p>
-                      <span className="inline-flex items-center text-sm font-medium text-[#0284C7] group-hover:gap-2 transition-all">
+                      <span className="inline-flex items-center text-sm font-medium text-[#0369A1] group-hover:gap-2 transition-all">
                         Learn More
                         <ChevronRight className="w-4 h-4 ml-0.5 group-hover:translate-x-1 transition-transform" />
                       </span>
@@ -317,14 +322,14 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <Reveal direction="up">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#0284C7] font-medium mb-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#0369A1] font-medium mb-3">
                 Why Choose Us
               </p>
             </Reveal>
             <Reveal direction="up" delay={0.1}>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
                 Built on Reliability &
-                <span className="text-[#0284C7]"> Trust</span>
+                <span className="text-[#0369A1]"> Trust</span>
               </h2>
             </Reveal>
           </div>
@@ -357,14 +362,14 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <Reveal direction="up">
-              <p className="text-xs uppercase tracking-[0.2em] text-blue-300 font-medium mb-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-blue-200 font-medium mb-3">
                 Our Services
               </p>
             </Reveal>
             <Reveal direction="up" delay={0.1}>
               <h2 className="text-3xl md:text-4xl font-bold">
                 Complete After-Sales
-                <span className="text-[#0284C7]"> Support</span>
+                <span className="text-blue-400"> Support</span>
               </h2>
             </Reveal>
           </div>
@@ -374,12 +379,12 @@ export default function HomePage() {
               <StaggerItem key={service.title}>
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 h-full transition-all duration-300 hover:bg-white/10 hover:border-white/20">
                   <div className="w-11 h-11 bg-white/10 rounded-lg flex items-center justify-center mb-4">
-                    <service.icon className="w-5 h-5 text-blue-300" />
+                    <service.icon className="w-5 h-5 text-blue-200" />
                   </div>
                   <h3 className="font-semibold text-white mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-blue-100/70 leading-relaxed">
+                  <p className="text-sm text-blue-50/70 leading-relaxed">
                     {service.description}
                   </p>
                 </div>
@@ -391,7 +396,7 @@ export default function HomePage() {
             <div className="text-center mt-12">
               <Link
                 href="/services"
-                className="inline-flex items-center text-sm font-medium text-white border border-white/20 px-6 py-2.5 rounded hover:bg-white/10 transition-all group"
+                className="inline-flex items-center text-sm font-medium text-white border border-white/30 px-6 py-2.5 rounded hover:bg-white/10 transition-all group"
               >
                 See All Services
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -419,7 +424,7 @@ export default function HomePage() {
                   <Magnetic strength={0.15}>
                     <a
                       href="tel:+919826593932"
-                      className="inline-flex items-center px-6 py-3 text-sm font-medium text-[#0B2B5E] bg-white rounded hover:bg-slate-100 transition-all shadow-sm"
+                      className="inline-flex items-center px-6 py-3 text-sm font-bold text-[#0B2B5E] bg-white rounded hover:bg-slate-100 transition-all shadow-sm"
                     >
                       <Phone className="w-4 h-4 mr-2" />
                       Call Now
@@ -429,7 +434,7 @@ export default function HomePage() {
                     href="https://wa.me/919826593932"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-[#25D366] rounded hover:bg-[#25D366]/90 transition-all shadow-sm"
+                    className="inline-flex items-center px-6 py-3 text-sm font-bold text-white bg-[#20B054] rounded hover:bg-[#20B054]/90 transition-all shadow-sm"
                   >
                     <svg
                       viewBox="0 0 24 24"

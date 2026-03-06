@@ -65,13 +65,14 @@ export default function AboutPage() {
             {/* Image side */}
             <Reveal direction="left" delay={0.1}>
               <div className="relative">
-                <div className="rounded-2xl overflow-hidden shadow-lg">
+                <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-100">
                   <Image
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSaIwNP3L-zv559t0Jk0vu8Z_5HE4suH_fjHF-3-HHcsMqE-zCuLZQygUBU5oNJl6LTooGuSoKvxW72BZN04rQBvjdzCY9X5TeNU9UandmzhLy5kQ_37DB3pgZpA9yT0BPzigE-Xk5oHEfJofP4IhUbDYp36SnUD-EV_QuoRYBmBTPOTAJvVS_uBGzKh_iEKtH69r32DK23QVlQNG7XOYAkjxhh3aTcA0QAbEWZjfN0aK7qnq-RyX37jDcdAPVEREKGeRgBCivwU0"
-                    alt="Balaji Health Care Team"
+                    src="/images/Vinod.png"
+                    alt="Vinod Tripathi - Director, Balaji Health Care"
                     width={600}
-                    height={400}
+                    height={700}
                     className="w-full h-auto object-cover"
+                    priority
                   />
                 </div>
 

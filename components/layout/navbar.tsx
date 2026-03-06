@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import BHCLogo from "@/components/ui/logo"
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -45,17 +46,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-[72px]">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3 group">
+            <Link href="/" className="flex items-center group">
               <motion.div
-                whileHover={{ scale: 1.05, rotate: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-10 h-10 bg-[#0B2B5E] rounded flex items-center justify-center text-white font-bold text-lg"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                BHC
+                <BHCLogo className="h-10 w-auto" />
               </motion.div>
-              <span className="font-bold text-lg tracking-tight hidden sm:block text-slate-900 group-hover:text-[#0B2B5E] transition-colors">
-                Balaji Health Care
-              </span>
             </Link>
 
             {/* Desktop nav */}

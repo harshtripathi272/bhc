@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react"
+import BHCLogo from "@/components/ui/logo"
 import Reveal from "@/components/animations/reveal"
 import StaggerContainer, { StaggerItem } from "@/components/animations/stagger"
 
@@ -27,13 +28,8 @@ export default function Footer() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12" stagger={0.08}>
           {/* Company */}
           <StaggerItem className="md:col-span-1">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-9 h-9 bg-white/10 rounded flex items-center justify-center text-white font-bold text-sm border border-white/10">
-                BHC
-              </div>
-              <span className="font-bold text-lg text-white tracking-tight">
-                Balaji Health Care
-              </span>
+            <div className="mb-6">
+              <BHCLogo className="h-10 w-auto" inverted />
             </div>
             <p className="text-sm text-slate-400 mb-6 leading-relaxed">
               Providing high-quality dialysis equipment and supplies to

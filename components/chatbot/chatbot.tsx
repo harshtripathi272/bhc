@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { MessageCircle, X, Send } from "lucide-react"
+import BHCLogo from "@/components/ui/logo"
 
 interface ChatMessage {
   from: "bot" | "user"
@@ -138,9 +139,7 @@ export default function Chatbot() {
             {/* Header */}
             <div className="bg-[#0B2B5E] px-5 py-4 flex items-center justify-between shrink-0">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-white/15 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                  BHC
-                </div>
+                <BHCLogo iconOnly inverted className="h-8 w-auto" />
                 <div>
                   <div className="text-white font-semibold text-sm">
                     BHC Assistant

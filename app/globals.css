@@ -2,43 +2,35 @@
 
 /* ═══════════════ DESIGN TOKENS ═══════════════ */
 @theme {
-  /* Colors */
-  --color-navy: #0A1628;
-  --color-navy-mid: #1B3A5C;
-  --color-navy-light: #243B5E;
-  --color-cyan: #00B4D8;
-  --color-cyan-hover: #0096B7;
-  --color-teal: #2EC4B6;
-  --color-off-white: #F0F4F8;
+  /* Colors — Stitch Design System */
+  --color-primary: #0B2B5E;
+  --color-primary-dark: #061836;
+  --color-accent: #0284C7;
+  --color-accent-light: #E8F2FB;
+  --color-background: #FFFFFF;
   --color-surface: #FFFFFF;
   --color-surface-alt: #F8FAFC;
   --color-border: #E2E8F0;
+  --color-text: #0F172A;
+  --color-text-secondary: #334155;
   --color-muted: #64748B;
-  --color-dark: #1A202C;
   --color-whatsapp: #25D366;
 
   /* Shadows */
-  --shadow-card: 0 4px 30px rgba(10, 22, 40, 0.08);
-  --shadow-card-hover: 0 8px 40px rgba(10, 22, 40, 0.12);
-  --shadow-glow: 0 0 30px rgba(0, 180, 216, 0.15);
-  --shadow-nav: 0 1px 3px rgba(10, 22, 40, 0.06);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.07);
+  --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-nav: 0 1px 3px rgba(0, 0, 0, 0.06);
 
   /* Animations */
-  --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
 }
 
 @theme inline {
-  --font-heading: var(--font-plus-jakarta);
+  --font-heading: var(--font-inter);
   --font-body: var(--font-inter);
 }
 
 /* ═══════════════ KEYFRAMES ═══════════════ */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(1.8); }
@@ -51,15 +43,15 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-surface);
-  color: var(--color-dark);
+  background: var(--color-background);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: #00B4D8;
+  background: #0284C7;
   color: white;
 }
 
@@ -68,11 +60,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--color-dark);
+  color: var(--color-text);
 }
 
 p {
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 a {
@@ -84,6 +76,10 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/* ═══════════════ UTILITY ═══════════════ */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ═══════════════ LENIS SMOOTH SCROLL ═══════════════ */
 html.lenis, html.lenis body {
@@ -108,7 +104,7 @@ html.lenis, html.lenis body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F0F4F8;
+  background: #F8FAFC;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -118,4 +114,14 @@ html.lenis, html.lenis body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
+}
+
+/* ═══════════════ SERVICE CARD HOVER ═══════════════ */
+.service-card {
+  transition: all 0.3s ease;
+}
+.service-card:hover {
+  border-left-width: 4px;
+  border-left-color: #0B2B5E;
+  transform: translateY(-2px);
 }

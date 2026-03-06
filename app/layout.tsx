@@ -1,17 +1,10 @@
 import type { Metadata } from "next"
-import { Plus_Jakarta_Sans, Inter } from "next/font/google"
+import { Inter } from "next/font/google"
 import Navbar from "@/components/layout/navbar"
 import Footer from "@/components/layout/footer"
 import SmoothScroll from "@/components/layout/smooth-scroll"
 import Chatbot from "@/components/chatbot/chatbot"
 import "./globals.css"
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-plus-jakarta",
-  weight: ["500", "600", "700", "800"],
-  display: "swap",
-})
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${inter.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body className="antialiased">
         <SmoothScroll>
           <Navbar />

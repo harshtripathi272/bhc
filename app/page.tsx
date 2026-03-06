@@ -115,7 +115,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left */}
             <div className="space-y-8">
               <Reveal direction="up" delay={0}>
@@ -178,27 +178,48 @@ export default function HomePage() {
               </Reveal>
             </div>
 
-            {/* Right — Image */}
+            {/* Right — Machine Image */}
             <Reveal direction="right" delay={0.2}>
-              <div className="relative">
-                <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                  <Image
-                    src={featuredProducts[0].image}
-                    alt="Hemodialysis Machine"
-                    width={640}
-                    height={480}
-                    className="w-full h-auto object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B2B5E]/40 to-transparent" />
+              <div className="relative w-full max-w-lg mx-auto">
+                {/* Subtle glow circle behind machine */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-[500px] h-[500px] rounded-full bg-[#0284C7]/8 blur-3xl" />
                 </div>
 
-                {/* Floating badge */}
+                {/* Badge: top-right */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.9, type: "spring", stiffness: 200 }}
+                  className="absolute top-4 right-0 bg-[#0B2B5E] text-white px-3 py-2 rounded-lg shadow-lg z-10"
+                >
+                  <div className="text-[10px] text-blue-300 uppercase tracking-wide mb-0.5">Machine</div>
+                  <div className="text-sm font-bold">Fresenius 5008S</div>
+                </motion.div>
+
+                {/* Machine photo - using local high-res image */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: 0.25, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative z-0"
+                >
+                  <Image
+                    src="/images/machine.png"
+                    alt="Fresenius 5008 Hemodialysis Machine"
+                    width={800}
+                    height={1000}
+                    className="w-full h-auto object-contain drop-shadow-2xl"
+                    priority
+                  />
+                </motion.div>
+
+                {/* Floating badge: bottom-left */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
-                  className="absolute -bottom-4 -left-4 bg-white px-4 py-3 rounded-xl shadow-lg border border-slate-100"
+                  transition={{ delay: 1, type: "spring", stiffness: 200 }}
+                  className="absolute bottom-4 left-0 bg-white px-4 py-3 rounded-xl shadow-lg border border-slate-100 z-10"
                 >
                   <div className="flex items-center space-x-2">
                     <Clock className="w-5 h-5 text-[#0284C7]" />

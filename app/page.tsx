@@ -18,10 +18,12 @@ import Counter from "@/components/animations/counter"
 import PromoSlider from "@/components/home/promo-slider"
 import Testimonials from "@/components/home/testimonials"
 import BrandScroll from "@/components/home/brand-scroll"
-import { products } from "@/lib/products-data"
+import { products, categories, categoryImage } from "@/lib/products-data"
 import { stats } from "@/lib/site-data"
 
-const trendingProducts = products.filter((p) => p.trending).slice(0, 4)
+const featuredCategories = categories.filter(
+  (c) => c.slug !== "" && c.value !== "trending"
+).slice(0, 4)
 
 /* Brief service teasers for homepage — just icon + title, NOT full descriptions */
 const serviceTeasers = [
@@ -121,55 +123,63 @@ export default function HomePage() {
       {/* ── PROMO BANNER SLIDER ── */}
       <PromoSlider />
 
-      {/* ── TRENDING PRODUCTS ── */}
+      {/* ── FEATURED CATEGORIES ── */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <Reveal direction="up">
               <p className="text-xs uppercase tracking-[0.2em] text-[#0284C7] font-medium mb-2">
-                Popular Products
+                Product Catalogue
               </p>
             </Reveal>
             <Reveal direction="up" delay={0.1}>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-                Trending Equipment
+                Browse by Category
               </h2>
+            </Reveal>
+            <Reveal direction="up" delay={0.15}>
+              <p className="mt-3 text-sm text-slate-500 max-w-lg mx-auto">
+                Over {products.length} products across {categories.length - 2} categories — wholesale pricing on everything.
+              </p>
             </Reveal>
           </div>
 
           <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.1}>
-            {trendingProducts.map((product) => (
-              <StaggerItem key={product.id}>
-                <Link href={`/products?open=${product.id}`} className="group block">
-                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-b from-blue-50/60 to-white border border-blue-100/60 hover:border-blue-200 transition-all duration-300 hover:shadow-lg hover:shadow-blue-100/40 hover:-translate-y-1 ring-1 ring-blue-50">
-                    {/* Subtle trending indicator */}
-                    <div className="absolute top-3 right-3 z-10">
-                      <span className="inline-flex items-center px-2 py-0.5 bg-[#0284C7]/10 text-[#0284C7] text-[10px] font-semibold uppercase tracking-wide rounded-full">
-                        Trending
-                      </span>
+            {featuredCategories.map((cat) => {
+              const count = products.filter((p) => p.category === cat.value).length
+              return (
+                <StaggerItem key={cat.slug}>
+                  <Link href={`/products/${cat.slug}`} className="group block">
+                    <div className="relative overflow-hidden rounded-xl bg-gradient-to-b from-blue-50/60 to-white border border-blue-100/60 hover:border-blue-200 transition-all duration-300 hover:shadow-lg hover:shadow-blue-100/40 hover:-translate-y-1 ring-1 ring-blue-50">
+                      <div className="h-44 overflow-hidden relative bg-slate-50">
+                        <Image
+                          src={categoryImage(cat.value)}
+                          alt={cat.label}
+                          fill
+                          sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,25vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
+                        <div className="absolute bottom-3 right-3">
+                          <span className="inline-flex items-center px-2.5 py-1 bg-white/90 text-slate-700 text-xs font-semibold rounded-full shadow-sm">
+                            {count} items
+                          </span>
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        <h3 className="font-semibold text-sm text-slate-900 mb-1 group-hover:text-[#0284C7] transition-colors">
+                          {cat.label}
+                        </h3>
+                        <p className="text-xs text-slate-500 line-clamp-2">{cat.description}</p>
+                        <span className="inline-flex items-center mt-3 text-xs font-medium text-[#0284C7]">
+                          Browse {cat.label} <ChevronRight className="w-3 h-3 ml-0.5" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="h-44 overflow-hidden relative bg-slate-50">
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-sm text-slate-900 mb-1 group-hover:text-[#0284C7] transition-colors">
-                        {product.name}
-                      </h3>
-                      <p className="text-xs text-slate-500 line-clamp-2">{product.description}</p>
-                      <span className="inline-flex items-center mt-3 text-xs font-medium text-[#0284C7]">
-                        View Details <ChevronRight className="w-3 h-3 ml-0.5" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </StaggerItem>
-            ))}
+                  </Link>
+                </StaggerItem>
+              )
+            })}
           </StaggerContainer>
 
           <Reveal direction="up" delay={0.3}>

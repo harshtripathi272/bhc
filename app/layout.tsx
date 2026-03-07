@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "hemodialysis",
     "medical equipment",
   ],
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/icon.svg" },
 }
 
 export default function RootLayout({

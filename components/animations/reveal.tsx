@@ -1,7 +1,6 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 
 interface RevealProps {
   children: React.ReactNode
@@ -11,7 +10,6 @@ interface RevealProps {
   direction?: "up" | "down" | "left" | "right" | "none"
   distance?: number
   once?: boolean
-  scale?: number
 }
 
 export default function Reveal({
@@ -22,43 +20,49 @@ export default function Reveal({
   direction = "up",
   distance = 30,
   once = true,
-  scale,
 }: RevealProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once, margin: "-80px" })
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
 
-  const directionMap = {
-    up: { y: distance, x: 0 },
-    down: { y: -distance, x: 0 },
-    left: { x: distance, y: 0 },
-    right: { x: -distance, y: 0 },
-    none: { x: 0, y: 0 },
-  }
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
 
-  const { x, y } = directionMap[direction]
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          if (once) observer.disconnect()
+        } else if (!once) {
+          setVisible(false)
+        }
+      },
+      { rootMargin: "-60px" }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [once])
+
+  const transform = {
+    up: `translateY(${distance}px)`,
+    down: `translateY(-${distance}px)`,
+    left: `translateX(${distance}px)`,
+    right: `translateX(-${distance}px)`,
+    none: "none",
+  }[direction]
 
   return (
-    <motion.div
+    <div
       ref={ref}
       className={className}
-      initial={{
-        opacity: 0,
-        x,
-        y,
-        ...(scale !== undefined ? { scale } : {}),
-      }}
-      animate={
-        isInView
-          ? { opacity: 1, x: 0, y: 0, ...(scale !== undefined ? { scale: 1 } : {}) }
-          : { opacity: 0, x, y, ...(scale !== undefined ? { scale } : {}) }
-      }
-      transition={{
-        duration,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0) translateX(0)" : transform,
+        transition: `opacity ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
+        willChange: "opacity, transform",
       }}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }

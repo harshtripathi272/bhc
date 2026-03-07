@@ -1,7 +1,13 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import {
+  useRef,
+  useState,
+  useEffect,
+  Children,
+  cloneElement,
+  isValidElement,
+} from "react"
 
 interface StaggerContainerProps {
   children: React.ReactNode
@@ -16,54 +22,65 @@ export default function StaggerContainer({
   stagger = 0.1,
   delay = 0,
 }: StaggerContainerProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-60px" })
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "-60px" }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  let index = 0
+  const enhanced = Children.map(children, (child) => {
+    if (!isValidElement(child)) return child
+    const i = index++
+    const itemDelay = delay + i * stagger
+    return cloneElement(
+      child as React.ReactElement<{ style?: React.CSSProperties }>,
+      {
+        style: {
+          ...((child as React.ReactElement<{ style?: React.CSSProperties }>)
+            .props.style || {}),
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(20px)",
+          transition: `opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${itemDelay}s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${itemDelay}s`,
+          willChange: "opacity, transform",
+        },
+      }
+    )
+  })
 
   return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: stagger,
-            delayChildren: delay,
-          },
-        },
-      }}
-    >
-      {children}
-    </motion.div>
+    <div ref={ref} className={className}>
+      {enhanced}
+    </div>
   )
 }
 
 export function StaggerItem({
   children,
   className,
+  style,
 }: {
   children: React.ReactNode
   className?: string
+  style?: React.CSSProperties
 }) {
   return (
-    <motion.div
-      className={className}
-      variants={{
-        hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
-        visible: {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          transition: {
-            duration: 0.5,
-            ease: [0.22, 1, 0.36, 1],
-          },
-        },
-      }}
-    >
+    <div className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   )
 }

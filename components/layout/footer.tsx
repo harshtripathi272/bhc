@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react"
+import { MapPin, Phone, Mail } from "lucide-react"
 import BHCLogo from "@/components/ui/logo"
 import Reveal from "@/components/animations/reveal"
 import StaggerContainer, { StaggerItem } from "@/components/animations/stagger"
@@ -140,7 +140,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 pt-8 text-sm text-center flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500">
-            © 2025 Balaji Health Care. All rights reserved.
+            © {new Date().getFullYear()} Balaji Health Care. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <Link href="#" className="text-slate-500 hover:text-white transition-colors">

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { useInView, motion } from "framer-motion"
 
 interface CounterProps {
   target: number
@@ -16,18 +15,32 @@ export default function Counter({
   duration = 2,
   className,
 }: CounterProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const ref = useRef<HTMLSpanElement>(null)
   const [count, setCount] = useState(0)
+  const [started, setStarted] = useState(false)
 
   useEffect(() => {
-    if (!isInView) return
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "-40px" }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
+  useEffect(() => {
+    if (!started) return
     let start = 0
     const end = target
-    const stepTime = (duration * 1000) / end
     const increment = Math.max(1, Math.floor(end / 60))
-
+    const stepTime = (duration * 1000) / (end / increment)
     const timer = setInterval(() => {
       start += increment
       if (start >= end) {
@@ -36,21 +49,14 @@ export default function Counter({
       } else {
         setCount(start)
       }
-    }, stepTime * increment)
-
+    }, stepTime)
     return () => clearInterval(timer)
-  }, [isInView, target, duration])
+  }, [started, target, duration])
 
   return (
-    <motion.span
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-    >
+    <span ref={ref} className={className}>
       {count}
       {suffix}
-    </motion.span>
+    </span>
   )
 }

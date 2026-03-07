@@ -1,226 +1,292 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { MessageCircle, X, Send } from "lucide-react"
-import BHCLogo from "@/components/ui/logo"
+import { MessageCircle, X, Send, Loader2 } from "lucide-react"
+import { FAQ_RESPONSES, COMPANY_PHONE, COMPANY_WHATSAPP } from "@/lib/chatbot-data"
+
+interface ChatAction {
+  label: string
+  href: string
+  type?: "whatsapp" | "call" | "link"
+}
 
 interface ChatMessage {
   from: "bot" | "user"
   text: string
-  links?: { label: string; href: string }[]
+  actions?: ChatAction[]
 }
 
-const quickReplies = [
-  {
-    label: "Products & Equipment",
-    response: {
-      from: "bot" as const,
-      text: "We supply a full range of dialysis machines (Fresenius, B.Braun, Nipro), RO water treatment systems, consumables like dialyzers and bloodlines, plus spare parts. All sourced from genuine manufacturers.",
-      links: [{ label: "View Products →", href: "/products" }],
-    },
-  },
-  {
-    label: "Services Offered",
-    response: {
-      from: "bot" as const,
-      text: "We offer 24/7 machine support, preventive maintenance, on-site repair, installation & commissioning, spare parts supply, and Annual Maintenance Contracts (AMC).",
-      links: [{ label: "View Services →", href: "/services" }],
-    },
-  },
-  {
-    label: "Contact & WhatsApp",
-    response: {
-      from: "bot" as const,
-      text: "Vinod Tripathi: +91 98265 93932\nRevati Raman Mishra: +91 97554 89707\n\nWe respond within 2 hours on business days.",
-      links: [
-        { label: "Call Now →", href: "tel:+919826593932" },
-        { label: "WhatsApp →", href: "https://wa.me/919826593932" },
-      ],
-    },
-  },
-  {
-    label: "About the Company",
-    response: {
-      from: "bot" as const,
-      text: "Balaji Health Care is a wholesale supplier of dialysis equipment, machines, and consumables based in Indore, India. Established in 2008, we serve hospitals and clinics across India with reliable products and expert after-sales service.",
-      links: [{ label: "Learn More →", href: "/about" }],
-    },
-  },
+const quickActions = [
+  { label: "Products", key: "products" },
+  { label: "Services", key: "services" },
+  { label: "Pricing", key: "pricing" },
+  { label: "Contact", key: "contact" },
+  { label: "Location", key: "location" },
+  { label: "About", key: "about" },
 ]
 
-const initialMessage: ChatMessage = {
+const welcomeMessage: ChatMessage = {
   from: "bot",
-  text: "Hi! I'm the BHC Assistant. How can I help you today?",
+  text: "Hi! I'm the Balaji Health Care assistant. How can I help you today? Choose a topic below or type your question.",
 }
 
 export default function Chatbot() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<ChatMessage[]>([initialMessage])
-  const [showChips, setShowChips] = useState(true)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const [open, setOpen] = useState(false)
+  const [messages, setMessages] = useState<ChatMessage[]>([welcomeMessage])
+  const [input, setInput] = useState("")
+  const [loading, setLoading] = useState(false)
+  const endRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
-    }
-  }, [messages])
+    endRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [messages, loading])
 
-  const handleChipClick = (chip: (typeof quickReplies)[number]) => {
-    setMessages((prev) => [
-      ...prev,
-      { from: "user", text: chip.label },
-      chip.response,
-    ])
-    setShowChips(true)
+  const addBotMessage = (text: string, actions?: ChatAction[]) => {
+    setMessages((prev) => [...prev, { from: "bot", text, actions }])
   }
 
-  const handleReset = () => {
-    setMessages([initialMessage])
-    setShowChips(true)
+  const handleQuickAction = (key: string) => {
+    setMessages((prev) => [...prev, { from: "user", text: quickActions.find((q) => q.key === key)?.label || key }])
+
+    const faq = FAQ_RESPONSES[key as keyof typeof FAQ_RESPONSES]
+    if (faq) {
+      setTimeout(() => {
+        const actions: ChatAction[] = []
+        if (key === "contact" || key === "pricing") {
+          actions.push(
+            { label: "WhatsApp", href: `https://wa.me/${COMPANY_WHATSAPP}`, type: "whatsapp" },
+            { label: "Call Now", href: `tel:${COMPANY_PHONE}`, type: "call" }
+          )
+        }
+        if (key === "products") {
+          actions.push({ label: "Browse Products", href: "/products", type: "link" })
+        }
+        if (key === "services") {
+          actions.push({ label: "View Services", href: "/services", type: "link" })
+        }
+        if (key === "location") {
+          actions.push({ label: "View on Maps", href: "https://maps.app.goo.gl/RSBC7tL2P1Bs8axE8", type: "link" })
+        }
+        // Also add any links from the FAQ data itself
+        if (faq.links) {
+          faq.links.forEach((l) => {
+            if (!actions.some((a) => a.href === l.href)) {
+              actions.push({ label: l.label, href: l.href, type: "link" })
+            }
+          })
+        }
+        addBotMessage(faq.answer, actions)
+      }, 300)
+    }
+  }
+
+  const matchFAQ = (text: string): string | null => {
+    const lower = text.toLowerCase()
+    if (/product|machine|dialysis|ro |reverse osmosis|consumable|spare/.test(lower)) return "products"
+    if (/service|install|maintenance|amc|repair|setup/.test(lower)) return "services"
+    if (/price|cost|rate|quote|how much/.test(lower)) return "pricing"
+    if (/contact|phone|call|email|reach/.test(lower)) return "contact"
+    if (/where|location|address|map|office|indore/.test(lower)) return "location"
+    if (/about|company|who|history|founded/.test(lower)) return "about"
+    return null
+  }
+
+  const handleSend = async () => {
+    const text = input.trim()
+    if (!text || loading) return
+    setInput("")
+    setMessages((prev) => [...prev, { from: "user", text }])
+
+    // Check for FAQ match first
+    const faqKey = matchFAQ(text)
+    if (faqKey) {
+      const faq = FAQ_RESPONSES[faqKey as keyof typeof FAQ_RESPONSES]
+      setTimeout(() => {
+        const actions: ChatAction[] = []
+        if (faqKey === "contact" || faqKey === "pricing") {
+          actions.push(
+            { label: "WhatsApp", href: `https://wa.me/${COMPANY_WHATSAPP}`, type: "whatsapp" },
+            { label: "Call Now", href: `tel:${COMPANY_PHONE}`, type: "call" }
+          )
+        }
+        if (faq.links) {
+          faq.links.forEach((l) => {
+            if (!actions.some((a) => a.href === l.href)) {
+              actions.push({ label: l.label, href: l.href, type: "link" })
+            }
+          })
+        }
+        addBotMessage(faq.answer, actions)
+      }, 300)
+      return
+    }
+
+    // Try AI API
+    setLoading(true)
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text }),
+      })
+      const data = await res.json()
+      if (data.reply) {
+        addBotMessage(data.reply, [
+          { label: "WhatsApp", href: `https://wa.me/${COMPANY_WHATSAPP}`, type: "whatsapp" },
+          { label: "Call Us", href: `tel:${COMPANY_PHONE}`, type: "call" },
+        ])
+      } else {
+        addBotMessage(
+          "I'm not sure about that. Let me connect you with our team for the best answer.",
+          [
+            { label: "WhatsApp", href: `https://wa.me/${COMPANY_WHATSAPP}`, type: "whatsapp" },
+            { label: "Call Us", href: `tel:${COMPANY_PHONE}`, type: "call" },
+          ]
+        )
+      }
+    } catch {
+      addBotMessage(
+        "Sorry, I couldn't process that right now. Please contact us directly.",
+        [
+          { label: "WhatsApp", href: `https://wa.me/${COMPANY_WHATSAPP}`, type: "whatsapp" },
+          { label: "Call Us", href: `tel:${COMPANY_PHONE}`, type: "call" },
+        ]
+      )
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <>
-      {/* Floating button */}
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#0B2B5E] text-white rounded-full shadow-lg flex items-center justify-center"
-        whileHover={{ scale: 1.1, boxShadow: "0 8px 30px rgba(11,43,94,0.4)" }}
-        whileTap={{ scale: 0.9 }}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1, type: "spring", stiffness: 260, damping: 20 }}
-      >
-        <AnimatePresence mode="wait">
-          {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <X className="w-5 h-5" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="chat"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <MessageCircle className="w-5 h-5" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Ping */}
-        {!isOpen && (
-          <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0284C7] opacity-75" />
-            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#0284C7] border-2 border-[#0B2B5E]" />
-          </span>
-        )}
-      </motion.button>
-
-      {/* Chat panel */}
+      {/* Toggle Button */}
       <AnimatePresence>
-        {isOpen && (
+        {!open && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            onClick={() => setOpen(true)}
+            className="fixed bottom-5 right-5 z-50 w-13 h-13 bg-[#0B2B5E] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#0B2B5E]/90 transition-colors"
+            aria-label="Open chat"
+          >
+            <MessageCircle className="w-6 h-6" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Chat Window */}
+      <AnimatePresence>
+        {open && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-24 right-6 z-50 w-[340px] h-[460px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden"
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed bottom-5 right-5 z-50 w-[360px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden"
+            style={{ maxHeight: "min(550px, calc(100vh - 6rem))" }}
           >
             {/* Header */}
-            <div className="bg-[#0B2B5E] px-5 py-4 flex items-center justify-between shrink-0">
-              <div className="flex items-center space-x-3">
-                <BHCLogo iconOnly inverted className="h-8 w-auto" />
-                <div>
-                  <div className="text-white font-semibold text-sm">
-                    BHC Assistant
-                  </div>
-                  <div className="flex items-center text-xs text-blue-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 mr-1.5" />
-                    Online
-                  </div>
-                </div>
+            <div className="flex items-center justify-between px-4 py-3 bg-[#0B2B5E] text-white shrink-0">
+              <div>
+                <h3 className="text-sm font-semibold">Balaji Health Care</h3>
+                <p className="text-[10px] text-blue-200">Online · Usually replies instantly</p>
               </div>
               <button
-                onClick={handleReset}
-                className="text-white/50 hover:text-white text-xs transition-colors"
+                onClick={() => setOpen(false)}
+                className="text-white/70 hover:text-white transition-colors"
+                aria-label="Close chat"
               >
-                Clear
+                <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Messages */}
-            <div
-              ref={scrollRef}
-              className="flex-1 overflow-y-auto px-4 py-4 space-y-3"
-              data-lenis-prevent
-            >
+            <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 min-h-0">
               {messages.map((msg, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.25, delay: msg.from === "bot" ? 0.15 : 0 }}
-                  className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
-                >
+                <div key={i} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
                   <div
-                    className={`max-w-[85%] px-3.5 py-2.5 text-sm leading-relaxed ${
+                    className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed ${
                       msg.from === "user"
-                        ? "bg-[#0B2B5E] text-white rounded-2xl rounded-br-md"
-                        : "bg-slate-100 text-slate-700 rounded-2xl rounded-bl-md"
+                        ? "bg-[#0B2B5E] text-white rounded-br-sm"
+                        : "bg-slate-100 text-slate-700 rounded-bl-sm"
                     }`}
                   >
                     <p className="whitespace-pre-line">{msg.text}</p>
-                    {msg.links && (
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {msg.links.map((link) => (
-                          <Link
-                            key={link.href}
-                            href={link.href}
-                            target={link.href.startsWith("http") ? "_blank" : undefined}
-                            className="text-xs font-medium text-[#0284C7] hover:underline"
+                    {msg.actions && msg.actions.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t border-slate-200/50">
+                        {msg.actions.map((action) => (
+                          <a
+                            key={action.label}
+                            href={action.href}
+                            target={action.type === "link" && !action.href.startsWith("/") ? "_blank" : undefined}
+                            rel={action.type === "link" ? "noopener noreferrer" : undefined}
+                            className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
+                              action.type === "whatsapp"
+                                ? "bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20"
+                                : action.type === "call"
+                                  ? "bg-blue-50 text-blue-600 hover:bg-blue-100"
+                                  : "bg-slate-200/60 text-slate-600 hover:bg-slate-200"
+                            }`}
                           >
-                            {link.label}
-                          </Link>
+                            {action.label}
+                          </a>
                         ))}
                       </div>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
+              {loading && (
+                <div className="flex justify-start">
+                  <div className="bg-slate-100 rounded-xl rounded-bl-sm px-3.5 py-2.5">
+                    <Loader2 className="w-4 h-4 text-slate-400 animate-spin" />
+                  </div>
+                </div>
+              )}
+              <div ref={endRef} />
             </div>
 
-            {/* Quick reply chips */}
-            {showChips && (
-              <div className="px-4 pb-3 flex flex-wrap gap-1.5 shrink-0">
-                {quickReplies.map((chip) => (
-                  <motion.button
-                    key={chip.label}
-                    onClick={() => handleChipClick(chip)}
-                    className="px-3 py-1.5 text-xs font-medium bg-slate-50 hover:bg-[#0B2B5E] hover:text-white border border-slate-200 hover:border-[#0B2B5E] rounded-full transition-all duration-200"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
+            {/* Quick Actions */}
+            <div className="px-4 py-2 border-t border-slate-100 bg-slate-50/50 shrink-0">
+              <div className="flex flex-wrap gap-1.5">
+                {quickActions.map((action) => (
+                  <button
+                    key={action.key}
+                    onClick={() => handleQuickAction(action.key)}
+                    className="px-2.5 py-1 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600 hover:bg-slate-100 hover:border-slate-300 transition-colors"
                   >
-                    {chip.label}
-                  </motion.button>
+                    {action.label}
+                  </button>
                 ))}
               </div>
-            )}
+            </div>
 
-            {/* Footer */}
-            <div className="px-4 py-2.5 border-t border-slate-100 text-center shrink-0">
-              <span className="text-[10px] text-slate-400">
-                Powered by Balaji Health Care
-              </span>
+            {/* Input */}
+            <div className="px-3 py-2.5 border-t border-slate-100 bg-white shrink-0">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  handleSend()
+                }}
+                className="flex items-center gap-2"
+              >
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Type a message..."
+                  className="flex-1 px-3 py-2 bg-slate-50 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 outline-none focus:ring-1 focus:ring-[#0284C7]/30 border border-slate-200"
+                />
+                <button
+                  type="submit"
+                  disabled={!input.trim() || loading}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#0B2B5E] text-white disabled:opacity-40 hover:bg-[#0B2B5E]/90 transition-colors shrink-0"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
             </div>
           </motion.div>
         )}

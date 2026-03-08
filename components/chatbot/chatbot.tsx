@@ -125,14 +125,24 @@ export default function Chatbot() {
     // Try AI API
     setLoading(true)
     try {
+      // Build conversation history for the API
+      const history = messages
+        .filter((m) => m.from === "user" || m.from === "bot")
+        .map((m) => ({
+          role: m.from === "user" ? "user" : "assistant",
+          content: m.text,
+        }))
+      // Append current user message
+      history.push({ role: "user", content: text })
+
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ messages: history }),
       })
       const data = await res.json()
-      if (data.reply) {
-        addBotMessage(data.reply, [
+      if (data.text) {
+        addBotMessage(data.text, [
           { label: "WhatsApp", href: `https://wa.me/${COMPANY_WHATSAPP}`, type: "whatsapp" },
           { label: "Call Us", href: `tel:${COMPANY_PHONE}`, type: "call" },
         ])
@@ -168,7 +178,7 @@ export default function Chatbot() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-5 right-5 z-50 w-13 h-13 bg-[#0B2B5E] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#0B2B5E]/90 transition-colors"
+            className="fixed bottom-5 right-5 z-50 w-13 h-13 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
             aria-label="Open chat"
           >
             <MessageCircle className="w-6 h-6" />
@@ -184,11 +194,11 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-5 right-5 z-50 w-[360px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden"
+            className="fixed bottom-5 right-5 z-50 w-90 max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden"
             style={{ maxHeight: "min(550px, calc(100vh - 6rem))" }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 bg-[#0B2B5E] text-white shrink-0">
+            <div className="flex items-center justify-between px-4 py-3 bg-primary text-white shrink-0">
               <div>
                 <h3 className="text-sm font-semibold">Balaji Health Care</h3>
                 <p className="text-[10px] text-blue-200">Online · Usually replies instantly</p>
@@ -209,7 +219,7 @@ export default function Chatbot() {
                   <div
                     className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed ${
                       msg.from === "user"
-                        ? "bg-[#0B2B5E] text-white rounded-br-sm"
+                        ? "bg-primary text-white rounded-br-sm"
                         : "bg-slate-100 text-slate-700 rounded-bl-sm"
                     }`}
                   >
@@ -224,7 +234,7 @@ export default function Chatbot() {
                             rel={action.type === "link" ? "noopener noreferrer" : undefined}
                             className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                               action.type === "whatsapp"
-                                ? "bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20"
+                                ? "bg-whatsapp/10 text-whatsapp hover:bg-whatsapp/20"
                                 : action.type === "call"
                                   ? "bg-blue-50 text-blue-600 hover:bg-blue-100"
                                   : "bg-slate-200/60 text-slate-600 hover:bg-slate-200"
@@ -277,12 +287,12 @@ export default function Chatbot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Type a message..."
-                  className="flex-1 px-3 py-2 bg-slate-50 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 outline-none focus:ring-1 focus:ring-[#0284C7]/30 border border-slate-200"
+                  className="flex-1 px-3 py-2 bg-slate-50 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 outline-none focus:ring-1 focus:ring-accent/30 border border-slate-200"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || loading}
-                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#0B2B5E] text-white disabled:opacity-40 hover:bg-[#0B2B5E]/90 transition-colors shrink-0"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-primary text-white disabled:opacity-40 hover:bg-primary/90 transition-colors shrink-0"
                 >
                   <Send className="w-4 h-4" />
                 </button>

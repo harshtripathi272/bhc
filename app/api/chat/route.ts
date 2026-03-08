@@ -22,20 +22,27 @@ async function callGemini(messages: ChatMessage[]) {
     return { error: "GEMINI_API_KEY not set in environment variables" }
   }
 
-  const contents = messages
-    .filter((m) => m.role !== "system")
-    .map((m) => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: m.content }],
-    }))
+  const userMessages = messages.filter((m) => m.role !== "system")
+
+  // Gemma models don't support system_instruction — prepend system prompt to the first user turn
+  const contents = userMessages.map((m, i) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [
+      {
+        text:
+          i === 0 && m.role === "user"
+            ? `${SYSTEM_PROMPT}\n\n${m.content}`
+            : m.content,
+      },
+    ],
+  }))
 
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=${apiKey}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
         contents,
         generationConfig: {
           temperature: 0.7,

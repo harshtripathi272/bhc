@@ -53,7 +53,7 @@ export default function HomePage() {
 
               <Reveal direction="up" delay={0.1}>
                 <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-slate-900 leading-[1.1] tracking-tight">
-                  Dialysis Equipment
+                  Dialysis Solutions
                   <br />
                   <span className="text-[#0284C7]">Delivered With Precision.</span>
                 </h1>

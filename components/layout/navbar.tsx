@@ -8,6 +8,7 @@ import BHCLogo from "@/components/ui/logo"
 
 const navLinks = [
   { label: "Home", href: "/" },
+  { label: "Dialysis Unit", href: "/dialysis-unit" },
   { label: "Products", href: "/products" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },

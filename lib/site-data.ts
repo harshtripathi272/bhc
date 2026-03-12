@@ -259,8 +259,133 @@ export const pillars: Pillar[] = [
   },
 ]
 
+// ── Dialysis Unit Page Data ──────────────────
+export interface DialysisFeature {
+  icon: string
+  title: string
+  description: string
+}
+
+export interface DialysisProcess {
+  step: number
+  title: string
+  description: string
+}
+
+export const dialysisUnit = {
+  headline: "Dialysis Unit Services",
+  tagline: "State-of-the-Art Hemodialysis — Delivered & Managed by Experts",
+  description:
+    "Balaji Health Care now offers fully operational dialysis unit services. Whether you need a complete dialysis center set up from scratch, or want us to run and manage your existing unit — we bring clinical-grade infrastructure, trained technicians, and end-to-end support so you can focus on patient care.",
+  highlights: [
+    "Fully equipped HD stations with latest Fresenius & B.Braun machines",
+    "AAMI-standard RO water treatment systems",
+    "Trained dialysis technicians & biomedical engineers on-site",
+    "Complete consumable supply chain — dialyzers, bloodlines, concentrates",
+    "24/7 emergency technical support & breakdown service",
+    "NABH-aligned SOPs and infection control protocols",
+  ],
+  features: [
+    {
+      icon: "Building2",
+      title: "Turnkey Unit Setup",
+      description:
+        "From site assessment to commissioning — we design, build, equip, and hand over a fully functional dialysis center ready to treat patients on day one.",
+    },
+    {
+      icon: "HeartPulse",
+      title: "Managed Operations",
+      description:
+        "We take over day-to-day operations of your dialysis unit — staffing, machine maintenance, consumable supply, and quality assurance under one contract.",
+    },
+    {
+      icon: "Droplets",
+      title: "Water Treatment Systems",
+      description:
+        "Medical-grade RO systems custom-designed for your unit capacity, with AAMI-standard water quality testing and ongoing maintenance.",
+    },
+    {
+      icon: "Users",
+      title: "Trained Technicians",
+      description:
+        "Our certified dialysis technicians and biomedical engineers ensure every session runs safely with proper machine handling and patient monitoring protocols.",
+    },
+    {
+      icon: "ShieldCheck",
+      title: "Quality & Compliance",
+      description:
+        "NABH-aligned standard operating procedures, infection control protocols, and regular audits to maintain the highest standards of patient safety.",
+    },
+    {
+      icon: "Truck",
+      title: "Supply Chain Management",
+      description:
+        "Uninterrupted supply of OEM-certified dialyzers, bloodlines, AV fistula needles, concentrates, and all consumables — delivered on schedule.",
+    },
+  ] as DialysisFeature[],
+  process: [
+    {
+      step: 1,
+      title: "Consultation & Assessment",
+      description:
+        "We evaluate your space, patient volume, budget, and regulatory requirements to design the optimal unit configuration.",
+    },
+    {
+      step: 2,
+      title: "Design & Planning",
+      description:
+        "Detailed floor plans, equipment layout, electrical & plumbing schematics, and RO system capacity planning — all customized for your facility.",
+    },
+    {
+      step: 3,
+      title: "Equipment & Installation",
+      description:
+        "Procurement of HD machines, RO plant, furniture, and medical accessories. Professional installation, testing, and calibration.",
+    },
+    {
+      step: 4,
+      title: "Staffing & Training",
+      description:
+        "Deployment of trained technicians or training your existing staff on machine operation, emergency protocols, and infection control.",
+    },
+    {
+      step: 5,
+      title: "Go Live & Ongoing Support",
+      description:
+        "Commissioning, first patient session, and continuous operational support with AMC, consumable supply, and 24/7 technical helpline.",
+    },
+  ] as DialysisProcess[],
+  models: [
+    {
+      title: "Setup Only",
+      description:
+        "We design, build, and equip your dialysis unit — then hand it over to your team to operate.",
+      icon: "Hammer",
+    },
+    {
+      title: "Setup + Managed Operations",
+      description:
+        "Complete turnkey solution: we build the unit AND run it for you with our staff, equipment, and supply chain.",
+      icon: "Layers",
+    },
+    {
+      title: "Operations Takeover",
+      description:
+        "Already have a unit? We take over operations — maintenance, staffing, consumables, and quality management.",
+      icon: "RefreshCcw",
+    },
+  ],
+  stats: [
+    { value: 50, suffix: "+", label: "Units Set Up" },
+    { value: 500, suffix: "+", label: "HD Stations Deployed" },
+    { value: 10, suffix: "+", label: "States Covered" },
+    { value: 24, suffix: "/7", label: "Technical Support" },
+  ],
+}
+
 // ── Interest Options (Contact Form) ──────────
 export const interestOptions = [
+  "Dialysis Unit Services",
   "Dialysis Machines",
   "RO Systems",
   "Consumables & Parts",

@@ -26,7 +26,14 @@ PRODUCTS:
 4. Equipment — Motorized dialysis chairs, patient monitors
 5. Spare Parts — Pump segment tubing, pressure transducers, filters, connectors
 
-SERVICES:
+DIALYSIS UNIT SERVICES (PRIORITY):
+- We now offer complete Dialysis Unit services — from turnkey setup to fully managed daily operations.
+- Models: Setup Only, Setup + Managed Operations, Operations Takeover (for existing units).
+- Includes: HD stations with Fresenius & B.Braun machines, AAMI-standard RO systems, trained technicians, full consumable supply chain, NABH-aligned SOPs, and 24/7 technical support.
+- 50+ units set up, 500+ HD stations deployed, 10+ states covered.
+- Dedicated page: /dialysis-unit
+
+OTHER SERVICES:
 1. Dialysis Unit Setup — Complete turnkey setup of new dialysis units
 2. Dialysis Unit Running — Operational support for running dialysis units
 3. Consultancy for Dialysis Unit — Expert advisory on equipment selection and unit design
@@ -66,8 +73,19 @@ export const FAQ_RESPONSES: Record<
   },
   services: {
     answer:
-      "Our services include: Dialysis Unit Setup & Design, Unit Running Support, Consultancy, Consumables & Spare Parts Supply, RO System Installation, and complete Turnkey Dialysis Projects from design to commissioning.",
-    links: [{ label: "View Services", href: "/services" }],
+      "Our flagship offering is complete Dialysis Unit services — turnkey setup, managed operations, or taking over existing units. We also provide: Unit Design, Consultancy, Consumables & Spare Parts Supply, RO System Installation, and Turnkey Dialysis Projects.",
+    links: [
+      { label: "Dialysis Unit Services", href: "/dialysis-unit" },
+      { label: "All Services", href: "/services" },
+    ],
+  },
+  "dialysis-unit": {
+    answer:
+      "We offer end-to-end Dialysis Unit services: Turnkey Setup (design, build, equip & commission), Managed Operations (daily operations, staffing, consumables & quality management), or Operations Takeover for existing units. 50+ units set up across 10+ states with 24/7 technical support.",
+    links: [
+      { label: "Learn More", href: "/dialysis-unit" },
+      { label: "Get Consultation", href: "/contact" },
+    ],
   },
   pricing: {
     answer:

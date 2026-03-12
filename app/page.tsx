@@ -11,6 +11,10 @@ import {
   Pipette,
   PackageCheck,
   ChevronRight,
+  HeartPulse,
+  Droplets,
+  ShieldCheck,
+  CheckCircle2,
 } from "lucide-react"
 import Reveal from "@/components/animations/reveal"
 import StaggerContainer, { StaggerItem } from "@/components/animations/stagger"
@@ -122,6 +126,92 @@ export default function HomePage() {
 
       {/* ── PROMO BANNER SLIDER ── */}
       <PromoSlider />
+
+      {/* ── DIALYSIS UNIT HIGHLIGHT (Priority Section) ── */}
+      <section className="py-16 lg:py-20 bg-gradient-to-br from-[#0B2B5E] to-[#0E3D7A] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[size:24px_24px]" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#0284C7]/10 blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-6">
+              <Reveal direction="left">
+                <div className="inline-flex items-center px-3 py-1.5 bg-white/10 border border-white/15 rounded-full text-xs font-medium text-blue-200 tracking-wide">
+                  <HeartPulse className="w-3.5 h-3.5 mr-1.5" />
+                  NEW — DIALYSIS UNIT SERVICES
+                </div>
+              </Reveal>
+
+              <Reveal direction="left" delay={0.1}>
+                <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+                  Complete Dialysis Unit
+                  <br />
+                  <span className="text-[#0284C7]">Setup & Management</span>
+                </h2>
+              </Reveal>
+
+              <Reveal direction="left" delay={0.15}>
+                <p className="text-sm text-blue-200/60 leading-relaxed max-w-md">
+                  We now offer end-to-end dialysis unit services — from turnkey setup to fully managed operations. Let us handle the infrastructure while you focus on patient care.
+                </p>
+              </Reveal>
+
+              <Reveal direction="left" delay={0.2}>
+                <div className="space-y-2.5">
+                  {[
+                    "Turnkey dialysis center setup & commissioning",
+                    "Managed daily operations with trained technicians",
+                    "AAMI-standard RO & water treatment systems",
+                    "24/7 technical support & maintenance",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#0284C7] shrink-0" />
+                      <span className="text-sm text-blue-100/70">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+
+              <Reveal direction="left" delay={0.25}>
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <Link
+                    href="/dialysis-unit"
+                    className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-[#0B2B5E] bg-white rounded-lg hover:bg-slate-100 transition-colors group"
+                  >
+                    Learn More
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white border border-white/25 rounded-lg hover:bg-white/10 transition-colors"
+                  >
+                    Get Free Consultation
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Right — Feature Cards */}
+            <StaggerContainer className="grid grid-cols-2 gap-4" stagger={0.08}>
+              {[
+                { icon: Building2, title: "Turnkey Setup", desc: "Design, build & commission" },
+                { icon: HeartPulse, title: "Managed Ops", desc: "Daily operations & staffing" },
+                { icon: Droplets, title: "RO Systems", desc: "Medical-grade water treatment" },
+                { icon: ShieldCheck, title: "Compliance", desc: "NABH-aligned protocols" },
+              ].map((card) => (
+                <StaggerItem key={card.title}>
+                  <div className="bg-white/[0.07] border border-white/10 rounded-xl px-5 py-5 hover:bg-white/[0.12] transition-colors">
+                    <card.icon className="w-7 h-7 text-blue-300 mb-3" />
+                    <h4 className="text-sm font-semibold text-white mb-1">{card.title}</h4>
+                    <p className="text-xs text-blue-200/50">{card.desc}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </div>
+      </section>
 
       {/* ── FEATURED CATEGORIES ── */}
       <section className="py-16 lg:py-20 bg-white">

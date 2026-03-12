@@ -8,6 +8,7 @@ import StaggerContainer, { StaggerItem } from "@/components/animations/stagger"
 
 const quickLinks = [
   { label: "Home", href: "/" },
+  { label: "Dialysis Unit", href: "/dialysis-unit" },
   { label: "Products", href: "/products" },
   { label: "Services", href: "/services" },
   { label: "About Us", href: "/about" },

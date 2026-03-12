@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Host
+Host: https://bhcmp.in
+
+# Sitemaps
+Sitemap: https://bhcmp.in/sitemap.xml

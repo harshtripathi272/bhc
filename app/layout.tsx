@@ -14,23 +14,64 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bhcmp.in"),
   title: {
     default: "Balaji Health Care — Wholesale Dialysis Equipment Supplier",
     template: "%s — Balaji Health Care",
   },
   description:
-    "India's trusted wholesale supplier of dialysis machines, equipment, consumables and service solutions since 2008. Based in Indore, serving pan-India.",
+    "India's trusted wholesale supplier of dialysis machines, consumables, RO systems, and dialysis unit services since 2008. Based in Indore, serving pan-India.",
   keywords: [
-    "dialysis equipment",
-    "wholesale",
-    "Fresenius",
-    "B.Braun",
-    "Nipro",
-    "Indore",
-    "hemodialysis",
-    "medical equipment",
+    "dialysis equipment wholesale India",
+    "hemodialysis machine supplier",
+    "Fresenius dialysis machine India",
+    "B.Braun dialysis machine",
+    "Nipro dialysis machine",
+    "dialysis consumables wholesale",
+    "RO plant dialysis",
+    "dialysis unit setup India",
+    "medical equipment supplier Indore",
+    "Balaji Health Care",
+    "dialysis spare parts India",
+    "AV fistula needle wholesale",
+    "dialyzers wholesale",
   ],
+  authors: [{ name: "Balaji Health Care", url: "https://bhcmp.in" }],
+  creator: "Balaji Health Care",
+  publisher: "Balaji Health Care",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://bhcmp.in",
+    siteName: "Balaji Health Care",
+    title: "Balaji Health Care — Wholesale Dialysis Equipment Supplier",
+    description:
+      "India's trusted wholesale supplier of dialysis machines, consumables, RO systems, and dialysis unit services since 2008. Based in Indore, serving pan-India.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Balaji Health Care — Wholesale Dialysis Equipment Supplier",
+    description:
+      "Wholesale supplier of hemodialysis machines, consumables, and dialysis unit services. Trusted by 200+ hospitals across India since 2008.",
+  },
+  alternates: {
+    canonical: "https://bhcmp.in",
+  },
   icons: { icon: "/icon.svg" },
+  verification: {
+    google: "", // ← Paste your Google Search Console verification code here
+  },
 }
 
 export default function RootLayout({

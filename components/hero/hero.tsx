@@ -14,7 +14,7 @@ import {
   Award,
 } from "lucide-react"
 
-const brands = ["Fresenius", "B.Braun", "Nipro", "Nikkiso"]
+const brands = ["Fresenius Medical Care", "Surni Lab", "Hindustan Biomedical", "Zydus", "Cadila", "WaterCare", "Med Tech"]
 
 const trustPoints = [
   { icon: ShieldCheck, text: "OEM Certified Products" },

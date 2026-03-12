@@ -69,9 +69,6 @@ export const metadata: Metadata = {
     canonical: "https://bhcmp.in",
   },
   icons: { icon: "/icon.svg" },
-  verification: {
-    google: "", // ← Paste your Google Search Console verification code here
-  },
 }
 
 export default function RootLayout({

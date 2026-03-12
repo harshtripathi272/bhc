@@ -2,6 +2,7 @@
 module.exports = {
   siteUrl: 'https://bhcmp.in',
   generateRobotsTxt: true,
+  generateIndexSitemap: false,
   sitemapSize: 5000,
   changefreq: 'weekly',
   priority: 0.7,
@@ -55,9 +56,6 @@ module.exports = {
         allow: '/',
         disallow: ['/api/'],
       },
-    ],
-    additionalSitemaps: [
-      'https://bhcmp.in/sitemap.xml',
     ],
   },
 }

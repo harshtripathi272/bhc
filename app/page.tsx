@@ -112,7 +112,7 @@ export default function HomePage() {
                 </div>
                 <Image
                   src="/images/machine.png"
-                  alt="Fresenius 5008 Hemodialysis Machine"
+                  alt="Hemodialysis Machine"
                   width={800}
                   height={1000}
                   className="relative z-0 w-full h-auto object-contain drop-shadow-2xl"

@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   keywords: [
     "dialysis equipment wholesale India",
     "hemodialysis machine supplier",
-    "Fresenius dialysis machine India",
-    "B.Braun dialysis machine",
-    "Nipro dialysis machine",
+    "dialysis machine India",
+    "hemodialysis equipment supplier",
+    "dialysis machine wholesale",
     "dialysis consumables wholesale",
     "RO plant dialysis",
     "dialysis unit setup India",

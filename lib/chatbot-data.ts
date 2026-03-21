@@ -20,7 +20,7 @@ COMPANY OVERVIEW:
 - Key contacts: Vinod Tripathi (Director, ${COMPANY_PHONE}), Revati Raman Mishra (Sales Manager, ${COMPANY_PHONE_ALT}).
 
 PRODUCTS:
-1. Dialysis Machines — Fresenius 4008S Classic, B.Braun Dialog+, Nipro (new & refurbished, with warranty)
+1. Dialysis Machines — hemodialysis machine range (new, with warranty)
 2. RO Water Treatment Systems — Medical-grade, AAMI-standard, 250–1000 L/hr capacity
 3. Consumables — High-flux dialyzers, AV fistula needles, bloodline tubing sets, bicarbonate concentrate
 4. Equipment — Motorized dialysis chairs, patient monitors
@@ -29,8 +29,8 @@ PRODUCTS:
 DIALYSIS UNIT SERVICES (PRIORITY):
 - We now offer complete Dialysis Unit services — from turnkey setup to fully managed daily operations.
 - Models: Setup Only, Setup + Managed Operations, Operations Takeover (for existing units).
-- Includes: HD stations with Fresenius & B.Braun machines, AAMI-standard RO systems, trained technicians, full consumable supply chain, NABH-aligned SOPs, and 24/7 technical support.
-- 50+ units set up, 500+ HD stations deployed, 10+ states covered.
+- Includes: dialysis machines, AAMI-standard RO systems, trained technicians, full consumable supply chain, NABH-aligned SOPs, and 24/7 technical support.
+- 50+ units set up, 200+ machines deployed, 3+ states covered, and 5000+ sessions/month.
 - Dedicated page: /dialysis-unit
 
 OTHER SERVICES:
@@ -45,8 +45,8 @@ OTHER SERVICES:
 
 KEY SELLING POINTS:
 - 15+ years experience
-- 500+ machines delivered
-- 200+ active clients
+- 2000+ machines delivered
+- 300+ active clients
 - Only OEM-certified and genuine products
 - Pan-India delivery within 7–10 days
 - 24/7 technical support with 2-hour response time
@@ -68,7 +68,7 @@ export const FAQ_RESPONSES: Record<
 > = {
   products: {
     answer:
-      "We supply a complete range: dialysis machines (Fresenius, B.Braun, Nipro), medical-grade RO systems, consumables (dialyzers, bloodlines, AV needles, bicarbonate), dialysis chairs, and spare parts. All products are OEM-certified with warranty.",
+      "We supply a complete range: dialysis machines, medical-grade RO systems, consumables (dialyzers, bloodlines, AV needles, bicarbonate), dialysis chairs, and spare parts. All products are OEM-certified with warranty.",
     links: [{ label: "View Products", href: "/products" }],
   },
   services: {
@@ -81,7 +81,7 @@ export const FAQ_RESPONSES: Record<
   },
   "dialysis-unit": {
     answer:
-      "We offer end-to-end Dialysis Unit services: Turnkey Setup (design, build, equip & commission), Managed Operations (daily operations, staffing, consumables & quality management), or Operations Takeover for existing units. 50+ units set up across 10+ states with 24/7 technical support.",
+      "We offer end-to-end Dialysis Unit services: Turnkey Setup (design, build, equip & commission), Managed Operations (daily operations, staffing, consumables & quality management), or Operations Takeover for existing units. 50+ units set up, 200+ machines deployed across 3+ states, and 5000+ sessions/month with 24/7 technical support.",
     links: [
       { label: "Learn More", href: "/dialysis-unit" },
       { label: "Get Consultation", href: "/contact" },
@@ -113,7 +113,7 @@ export const FAQ_RESPONSES: Record<
   },
   about: {
     answer:
-      "Balaji Health Care has been India's trusted wholesale dialysis equipment supplier since 2008. Based in Indore, we've delivered 500+ machines to 200+ hospitals and clinics across India, backed by expert after-sales support.",
+      "Balaji Health Care has been India's trusted wholesale dialysis equipment supplier since 2008. Based in Indore, we've delivered 2000+ machines to 300+ hospitals and clinics across India, backed by expert after-sales support.",
     links: [{ label: "About Us", href: "/about" }],
   },
 }

@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Balaji Health Care — India's trusted wholesale dialysis equipment supplier since 2008. Based in Indore, we've delivered 500+ machines to hospitals across India.",
+    "Learn about Balaji Health Care — India's trusted wholesale dialysis equipment supplier since 2008. Based in Indore, we've delivered 2000+ machines to hospitals across India.",
   keywords: [
     "Balaji Health Care",
     "dialysis equipment supplier Indore",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Balaji Health Care — Dialysis Equipment Supplier Since 2008",
     description:
-      "Balaji Health Care has been India's trusted wholesale dialysis equipment supplier since 2008. 500+ machines delivered, 200+ active clients across India.",
+      "Balaji Health Care has been India's trusted wholesale dialysis equipment supplier since 2008. 2000+ machines delivered, 300+ active clients across India.",
     url: "https://bhcmp.in/about",
   },
 }

@@ -205,7 +205,7 @@ Ablecath HDF 3 Luman 12FR X 13.5CM Curved Compound
 Ablecath HDF 3 Luman 4.5 X 6CM Stright Compound
 Ablecath HDF 3 Luman 7FR X 16CM Curved Compound
 Aquasol Total Hardness 90275090
-AV Set Fmc Paed Baby R
+AV Set Paed Baby R
 AV SET ON LINE PLUS 5008
 BARD HEMOSPLIT 19CM CURVE 5735150
 BARD HEMOSPLIT 23CM STRATE 5733730
@@ -360,8 +360,8 @@ AV FISTULA NEEDLE 16 G
 AV FISTULA NEEDLE 17 G
 A.V.Fistula Needle Sets VITALA V2517LF01E (17G)
 A.V.Fistula Needle Sets VITALA VF2516LF01E (16G)
-AV Needle FMC 16 G
-AV Needle FMC 17 G
+AV Needle 16 G
+AV Needle 17 G
 INTRODUCER NEEDLE
 
 
@@ -386,8 +386,10 @@ F80 HIGH FLUX DIALYSER
 F8 HPS LOW FLUX DIALYSER
 FX10 Dialyser
 Fx5 Dialyser
-FX60 Dialyser
-FX80 Dialyser
+Low Flux Dialyzer
+High Flux Dialyzer
+Single Flux Dialyzer
+Pediatric Flux Dialyzer
 Fx 8 Dialyser
 FX CorDiax 100 (F00001592)
 FX Cordiax 40

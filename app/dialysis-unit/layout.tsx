@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dialysis Unit Services — Turnkey Setup & Managed Operations",
     description:
-      "Complete dialysis unit services: turnkey setup, managed operations, or takeover of existing units. 50+ units, 500+ HD stations, 10+ states covered.",
+      "Complete dialysis unit services: turnkey setup, managed operations, or takeover of existing units. 50+ units, 200+ machines, 3+ states covered, and 5000+ sessions/month.",
     url: "https://bhcmp.in/dialysis-unit",
   },
 }

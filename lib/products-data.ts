@@ -57,8 +57,10 @@ const categoryImages: Record<string, string> = {
 const trendingNames = new Set([
   "Haemodialysis Machine 4008S",
   "Haemodialysis Machine 4008S with BPM",
-  "FX60 Dialyser",
-  "FX80 Dialyser",
+  "Low Flux Dialyzer",
+  "High Flux Dialyzer",
+  "Single Flux Dialyzer",
+  "Pediatric Flux Dialyzer",
   "AV Fistula Needle 16G",
   "AV Set E Blood Tubing",
   "Diasafe Plus Filter",

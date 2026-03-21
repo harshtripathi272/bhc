@@ -3,11 +3,11 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Browse our complete range of dialysis equipment — hemodialysis machines (Fresenius, B.Braun, Nipro), RO systems, dialyzers, bloodlines, AV needles, spare parts, and more. Wholesale pricing.",
+    "Browse our complete range of dialysis equipment — hemodialysis machines, RO systems, dialyzers, bloodlines, AV needles, spare parts, and more. Wholesale pricing.",
   keywords: [
     "dialysis machines wholesale India",
-    "Fresenius 4008S price India",
-    "B.Braun dialysis machine",
+    "hemodialysis machine supplier",
+    "dialysis machine catalogue",
     "dialysers wholesale",
     "AV fistula needles",
     "hemodialysis consumables",

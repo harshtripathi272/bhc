@@ -108,7 +108,7 @@ export default function AboutPage() {
               </Reveal>
               <Reveal direction="right" delay={0.2}>
                 <p className="text-slate-500 leading-relaxed">
-                  Starting with a small operation supplying refurbished
+                  Starting with a small operation supplying
                   hemodialysis machines, we have since grown into a wholesale
                   partner serving hospitals, clinics, and dialysis centers with a
                   complete range of equipment, consumables, and after-sales

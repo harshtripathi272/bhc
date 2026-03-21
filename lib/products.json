@@ -4,7 +4,7 @@
       "label": "Spare Parts",
       "value": "Spare Parts",
       "slug": "spare-parts",
-      "description": "OEM-quality replacement parts for Fresenius 4008S, 5008S, and other dialysis machines.",
+      "description": "OEM-quality replacement parts for hemodialysis machines and related systems.",
       "icon": "Wrench"
     },
     {
@@ -39,7 +39,7 @@
       "label": "Machines",
       "value": "Machines",
       "slug": "machines",
-      "description": "Refurbished and new hemodialysis machines from Fresenius and other leading brands.",
+      "description": "Hemodialysis machines and related equipment for clinical dialysis care.",
       "icon": "Monitor"
     },
     {
@@ -60,7 +60,7 @@
       "label": "Dialysers",
       "value": "Dialysers",
       "slug": "dialysers",
-      "description": "High-flux and low-flux dialysers from Fresenius — FX, F-series, and Ultraflux range.",
+      "description": "High-flux, low-flux, single-flux, and pediatric dialyzers for dialysis sessions.",
       "icon": "Filter"
     }
   ],
@@ -255,7 +255,7 @@
     { "name": "Ablecath HDF 3 Luman 4.5FR x 6cm Straight", "category": "Surgical" },
     { "name": "Ablecath HDF 3 Luman 7FR x 16cm Curved", "category": "Surgical" },
     { "name": "Aquasol Total Hardness", "category": "Surgical", "hsn": "90275090" },
-    { "name": "AV Set FMC Paed Baby R", "category": "Surgical" },
+    { "name": "AV Set Paed Baby R", "category": "Surgical" },
     { "name": "AV Set Online Plus 5008", "category": "Surgical" },
     { "name": "Bard Hemosplit 19cm Curve (5735150)", "category": "Surgical" },
     { "name": "Bard Hemosplit 23cm Straight (5733730)", "category": "Surgical" },
@@ -367,7 +367,6 @@
     { "name": "Diasafe Plus Filter", "category": "Citos" },
 
     { "name": "Haemodialysis Machine 4008S", "category": "Machines" },
-    { "name": "Haemodialysis Machine 4008S (Old/Refurbished)", "category": "Machines" },
     { "name": "Haemodialysis Machine 4008S with BPM", "category": "Machines" },
     { "name": "Multi ECCO2R Gas Exchanger", "category": "Machines", "hsn": "90189099" },
 
@@ -375,8 +374,8 @@
     { "name": "AV Fistula Needle 17G", "category": "Needles" },
     { "name": "AV Fistula Needle Sets VITALA V2517LF01E (17G)", "category": "Needles" },
     { "name": "AV Fistula Needle Sets VITALA VF2516LF01E (16G)", "category": "Needles" },
-    { "name": "AV Needle FMC 16G", "category": "Needles" },
-    { "name": "AV Needle FMC 17G", "category": "Needles" },
+    { "name": "AV Needle 16G", "category": "Needles" },
+    { "name": "AV Needle 17G", "category": "Needles" },
     { "name": "Introducer Needle", "category": "Needles" },
 
     { "name": "Syringe 10ml", "category": "Syringes", "hsn": "90180000" },
@@ -392,8 +391,10 @@
     { "name": "F8 HPS Low Flux Dialyser", "category": "Dialysers" },
     { "name": "FX10 Dialyser", "category": "Dialysers" },
     { "name": "FX5 Dialyser", "category": "Dialysers" },
-    { "name": "FX60 Dialyser", "category": "Dialysers" },
-    { "name": "FX80 Dialyser", "category": "Dialysers" },
+    { "name": "Low Flux Dialyzer", "category": "Dialysers" },
+    { "name": "High Flux Dialyzer", "category": "Dialysers" },
+    { "name": "Single Flux Dialyzer", "category": "Dialysers" },
+    { "name": "Pediatric Flux Dialyzer", "category": "Dialysers" },
     { "name": "FX8 Dialyser", "category": "Dialysers" },
     { "name": "FX CorDiax 100 (F00001592)", "category": "Dialysers" },
     { "name": "FX CorDiax 40", "category": "Dialysers" },

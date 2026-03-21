@@ -47,8 +47,8 @@ export const contacts = [
 // ── Stats ────────────────────────────────────
 export const stats = [
   { value: 15, suffix: "+", label: "Years Experience" },
-  { value: 500, suffix: "+", label: "Machines Delivered" },
-  { value: 200, suffix: "+", label: "Active Clients" },
+  { value: 2000, suffix: "+", label: "Machines Delivered" },
+  { value: 300, suffix: "+", label: "Active Clients" },
 ]
 
 // ── Services ─────────────────────────────────
@@ -112,7 +112,7 @@ export const services: ServiceItem[] = [
     icon: "Hammer",
     title: "Spare Parts",
     description:
-      "Genuine spare parts for Fresenius, B.Braun, Nipro, and other leading dialysis machine brands.",
+      "Genuine spare parts for dialysis machines and related systems.",
     features: [
       "OEM-sourced components",
       "Quick dispatch",
@@ -210,9 +210,9 @@ export interface PromoSlide {
 export const promoSlides: PromoSlide[] = [
   {
     id: 1,
-    title: "Fresenius 4008S — Now in Stock",
+    title: "Hemodialysis Machines — Now in Stock",
     subtitle:
-      "Fully refurbished with 6-month warranty. Pan-India delivery.",
+      "New machines with warranty and pan-India delivery.",
     bgColor: "from-[#0B2B5E] to-[#0E3D7A]",
   },
   {
@@ -278,7 +278,7 @@ export const dialysisUnit = {
   description:
     "Balaji Health Care now offers fully operational dialysis unit services. Whether you need a complete dialysis center set up from scratch, or want us to run and manage your existing unit — we bring clinical-grade infrastructure, trained technicians, and end-to-end support so you can focus on patient care.",
   highlights: [
-    "Fully equipped HD stations with latest Fresenius & B.Braun machines",
+    "Fully equipped dialysis machines for modern clinical workflows",
     "AAMI-standard RO water treatment systems",
     "Trained dialysis technicians & biomedical engineers on-site",
     "Complete consumable supply chain — dialyzers, bloodlines, concentrates",
@@ -377,8 +377,9 @@ export const dialysisUnit = {
   ],
   stats: [
     { value: 50, suffix: "+", label: "Units Set Up" },
-    { value: 500, suffix: "+", label: "HD Stations Deployed" },
-    { value: 10, suffix: "+", label: "States Covered" },
+    { value: 200, suffix: "+", label: "Machines Deployed" },
+    { value: 3, suffix: "+", label: "States Covered" },
+    { value: 5000, suffix: "+", label: "Sessions / Month" },
     { value: 24, suffix: "/7", label: "Technical Support" },
   ],
 }

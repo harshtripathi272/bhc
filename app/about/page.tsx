@@ -81,7 +81,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <div className="text-xl font-bold text-[#0B2B5E]">
-                        <Counter target={500} suffix="+" duration={2.5} />
+                        <Counter target={2000} suffix="+" duration={2.5} />
                       </div>
                       <div className="text-[10px] text-slate-500 mt-0.5">
                         Machines

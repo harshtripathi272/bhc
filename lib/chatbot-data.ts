@@ -6,7 +6,7 @@ export const COMPANY_NAME = "Balaji Health Care"
 export const COMPANY_PHONE = "+91 98265 93932"
 export const COMPANY_PHONE_ALT = "+91 97554 89707"
 export const COMPANY_WHATSAPP = "919826593932"
-export const COMPANY_EMAIL = "sales@balajihealthcare.com"
+export const COMPANY_EMAIL = "bajaljihealthcare1020@gmail.com"
 export const COMPANY_ADDRESS =
   "G-3, Mangalam Apartments, Manorama Ganj, Old Palasia, Indore, MP 452018"
 export const COMPANY_HOURS = "Mon – Sat, 9:00 AM – 7:00 PM"

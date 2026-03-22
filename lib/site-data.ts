@@ -12,7 +12,7 @@ export const company = {
   phone: "+91 98265 93932",
   phoneFormatted: "+91 98265 93932",
   phoneAlt: "+91 97554 89707",
-  email: "sales@balajihealthcare.com",
+  email: "bajaljihealthcare1020@gmail.com",
   whatsapp: "919826593932",
   address: {
     line1: "G-3, Mangalam Apartments",

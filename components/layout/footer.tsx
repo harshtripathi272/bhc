@@ -58,7 +58,7 @@ export default function Footer() {
                 <Phone className="w-4 h-4" />
               </a>
               <a
-                href="mailto:sales@balajihealthcare.com"
+                href="mailto:bajaljihealthcare1020@gmail.com"
                 className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-white/30 transition-all"
               >
                 <Mail className="w-4 h-4" />
@@ -128,10 +128,10 @@ export default function Footer() {
               <li className="flex items-center text-slate-400">
                 <Mail className="w-4 h-4 mr-2 shrink-0 text-slate-500" />
                 <a
-                  href="mailto:sales@balajihealthcare.com"
+                  href="mailto:bajaljihealthcare1020@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  sales@balajihealthcare.com
+                  bajaljihealthcare@gmail.com
                 </a>
               </li>
             </ul>

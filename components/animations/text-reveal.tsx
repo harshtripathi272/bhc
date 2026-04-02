@@ -6,16 +6,15 @@ import { useRef } from "react"
 interface TextRevealProps {
   children: string
   className?: string
-  once?: boolean
 }
 
-export default function TextReveal({ children, className, once = true }: TextRevealProps) {
+export default function TextReveal({ children, className }: TextRevealProps) {
   const words = children.split(" ")
 
   return (
     <span className={className}>
       {words.map((word, i) => (
-        <Word key={`${word}-${i}`} index={i} total={words.length}>
+        <Word key={`${word}-${i}`}>
           {word}
         </Word>
       ))}
@@ -25,12 +24,8 @@ export default function TextReveal({ children, className, once = true }: TextRev
 
 function Word({
   children,
-  index,
-  total,
 }: {
   children: string
-  index: number
-  total: number
 }) {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -38,8 +33,6 @@ function Word({
     offset: ["start 0.95", "start 0.6"],
   })
 
-  const start = index / total
-  const end = start + 1 / total
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.15, 0.5, 1])
 
   return (

@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/navbar"
 import Footer from "@/components/layout/footer"
 import SmoothScroll from "@/components/layout/smooth-scroll"
 import Chatbot from "@/components/chatbot/chatbot"
+import { company } from "@/lib/site-data"
 import "./globals.css"
 
 const inter = Inter({
@@ -15,6 +16,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bhcmp.in"),
+  applicationName: "Balaji Health Care",
+  category: "Healthcare",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
   title: {
     default: "Balaji Health Care — Wholesale Dialysis Equipment Supplier",
     template: "%s — Balaji Health Care",
@@ -71,6 +80,27 @@ export const metadata: Metadata = {
   icons: { icon: "/icon.svg" },
 }
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  name: company.name,
+  url: "https://bhcmp.in",
+  description:
+    "Wholesale supplier of dialysis machines, consumables, RO systems, and dialysis unit services in India.",
+  telephone: company.phone,
+  email: company.email,
+  areaServed: "IN",
+  sameAs: [company.mapsLink],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: `${company.address.line1}, ${company.address.line2}`,
+    addressLocality: company.address.city,
+    addressRegion: company.address.state,
+    postalCode: company.address.pin,
+    addressCountry: "IN",
+  },
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -79,6 +109,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
         <SmoothScroll>
           <Navbar />
           <main className="pt-16">{children}</main>

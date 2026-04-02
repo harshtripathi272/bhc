@@ -8,7 +8,6 @@ import {
   Clock,
   Send,
   CheckCircle2,
-  X,
   Loader2,
 } from "lucide-react"
 import Reveal from "@/components/animations/reveal"

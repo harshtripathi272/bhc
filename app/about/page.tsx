@@ -1,12 +1,9 @@
-"use client"
-
 import Image from "next/image"
 import Link from "next/link"
 import {
   ShieldCheck,
   Award,
   Stethoscope,
-  Phone,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react"

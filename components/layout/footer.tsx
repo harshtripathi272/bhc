@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { MapPin, Phone, Mail } from "lucide-react"
 import BHCLogo from "@/components/ui/logo"
-import Reveal from "@/components/animations/reveal"
 import StaggerContainer, { StaggerItem } from "@/components/animations/stagger"
 
 const quickLinks = [
